@@ -25,9 +25,13 @@ SECRET_KEY = 'django-insecure-0_fxt=j0qb%^fl2*cv%-^eym#51g*-6e)-c8ak@q*c0c=b%f3x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
+# ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [
+    "pycon-angola.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 # Application definition
 
 INSTALLED_APPS = [
