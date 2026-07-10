@@ -1,0 +1,477 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}About - PyCon Angola 2027{% endblock %}
+{% block description %}Learn about PyCon Angola, the first Python conference in Angola. Discover our mission, program, and how to participate.{% endblock %}
+{% block og_title %}About PyCon Angola 2027{% endblock %}
+{% block og_description %}The first Python conference in Angola. Learn about our mission and program.{% endblock %}
+
+{% block nav_home %}Home{% endblock %}
+{% block nav_about %}About{% endblock %}
+{% block nav_cfp %}Call4Papers{% endblock %}
+{% block nav_schedule %}Schedule{% endblock %}
+{% block nav_venue %}Venue{% endblock %}
+{% block nav_coc %}Code of Conduct{% endblock %}
+{% block nav_newsletter %}Newsletter{% endblock %}
+
+{% block footer_description %}Building the Python community in Angola 🇦🇴{% endblock %}
+{% block footer_nav %}Navigation{% endblock %}
+{% block footer_home %}Home{% endblock %}
+{% block footer_about %}About{% endblock %}
+{% block footer_cfp %}Call4Papers{% endblock %}
+{% block footer_schedule %}Schedule{% endblock %}
+{% block footer_resources %}Resources{% endblock %}
+{% block footer_coc %}Code of Conduct{% endblock %}
+{% block footer_faq %}FAQ{% endblock %}
+{% block footer_contact %}Contact{% endblock %}
+{% block footer_blog %}Blog{% endblock %}
+{% block footer_stay %}Stay tuned{% endblock %}
+{% block footer_subscribe %}Get updates about PyCon Angola{% endblock %}
+{% block footer_email %}Your best email{% endblock %}
+{% block footer_made %}Made with{% endblock %}
+{% block footer_by %}by{% endblock %}
+
+{% block content %}
+
+<style>
+    .page-header {
+        padding: 150px 0 80px;
+        background: 
+            linear-gradient(rgba(10, 14, 26, 0.85), rgba(15, 26, 46, 0.92)),
+            url("{% static 'images/luanda-skyline.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+    }
+    
+    .page-header h1 {
+        font-size: 3.5rem;
+        font-weight: 900;
+    }
+    
+    .page-header .breadcrumb {
+        background: transparent;
+        padding: 0;
+        justify-content: center;
+    }
+    
+    .page-header .breadcrumb-item a {
+        color: var(--text-muted);
+        text-decoration: none;
+    }
+    
+    .page-header .breadcrumb-item.active {
+        color: var(--python-yellow);
+    }
+    
+    .page-header .breadcrumb-item::before {
+        color: var(--text-muted);
+    }
+    
+    .about-section {
+        padding: 60px 0;
+    }
+    
+    .about-section:nth-child(even) {
+        background: var(--primary-blue);
+    }
+    
+    .about-section:nth-child(odd) {
+        background: var(--primary-dark);
+    }
+    
+    .about-section .section-icon {
+        font-size: 3rem;
+        color: var(--python-yellow);
+        margin-bottom: 20px;
+    }
+    
+    .about-section h2 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+    }
+    
+    .about-section h2 .highlight {
+        color: var(--python-yellow);
+    }
+    
+    .about-section p {
+        color: var(--text-muted);
+        font-size: 1.05rem;
+        line-height: 1.8;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .about-section .lead {
+        font-size: 1.15rem;
+        color: var(--text-light);
+        font-weight: 500;
+    }
+    
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        max-width: 1000px;
+        margin: 30px auto 0;
+    }
+    
+    .feature-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: var(--border-radius-lg);
+        padding: 30px 24px;
+        text-align: center;
+        transition: var(--transition);
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255, 212, 59, 0.2);
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
+    .feature-card .card-icon {
+        font-size: 2.5rem;
+        color: var(--python-yellow);
+        margin-bottom: 16px;
+        display: block;
+    }
+    
+    .feature-card h5 {
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+    
+    .feature-card p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        margin: 0;
+        line-height: 1.6;
+    }
+    
+    .highlight-box {
+        background: rgba(255, 212, 59, 0.05);
+        border: 1px solid rgba(255, 212, 59, 0.1);
+        border-radius: var(--border-radius-lg);
+        padding: 40px;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .highlight-box .big-icon {
+        font-size: 3.5rem;
+        color: var(--python-yellow);
+        margin-bottom: 16px;
+        display: block;
+    }
+    
+    .highlight-box h4 {
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+    
+    .highlight-box p {
+        color: var(--text-muted);
+        font-size: 1rem;
+        line-height: 1.7;
+        margin: 0;
+    }
+    
+    .participants-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        max-width: 800px;
+        margin: 20px auto 0;
+    }
+    
+    .participant-item {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: var(--border-radius);
+        padding: 14px 16px;
+        text-align: center;
+        transition: var(--transition);
+    }
+    
+    .participant-item:hover {
+        border-color: rgba(255, 212, 59, 0.2);
+    }
+    
+    .participant-item .item-icon {
+        font-size: 1.5rem;
+        color: var(--python-yellow);
+        display: block;
+        margin-bottom: 4px;
+    }
+    
+    .participant-item span {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+    
+    .organizer-box {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: var(--border-radius-lg);
+        padding: 40px;
+        max-width: 700px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .organizer-box h4 {
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+    
+    .organizer-box p {
+        color: var(--text-muted);
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+    
+    @media (max-width: 768px) {
+        .page-header h1 {
+            font-size: 2.2rem;
+        }
+        
+        .about-section h2 {
+            font-size: 1.8rem;
+        }
+        
+        .feature-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .feature-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .participants-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+</style>
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'website:home' %}"><i class="bi bi-house"></i> Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">About</li>
+            </ol>
+        </nav>
+        <h1>About <span class="highlight">PyCon Angola</span></h1>
+        <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin: 16px auto 0;">
+            The first Python conference in Angola
+        </p>
+    </div>
+</section>
+
+<!-- What is PyCon Angola -->
+<section class="about-section">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-info-circle"></i></div>
+        <h2>What is <span class="highlight">PyCon Angola</span>?</h2>
+        <p class="lead" style="max-width: 800px; margin: 0 auto 20px;">
+            PyCon Angola is part of a global series of conferences focused on Python programming.
+        </p>
+        <p>
+            Bringing together people from all backgrounds to learn, collaborate, and drive progress 
+            in technology and open-source projects. The conference is a space where Angola's 
+            technology community comes together to share knowledge and build the future.
+        </p>
+        <p style="margin-top: 16px;">
+            Participants have the opportunity to network, collaborate on projects, and interact 
+            with others who are driving technological advancement in Angola. Whether you are a 
+            student, a professional, or simply curious about technology, PyCon Angola has something 
+            for everyone.
+        </p>
+    </div>
+</section>
+
+<!-- What happens -->
+<section class="about-section">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-calendar2-week"></i></div>
+        <h2>What happens at <span class="highlight">PyCon Angola</span>?</h2>
+        <p style="margin-bottom: 30px;">
+            A diverse program for all experience levels:
+        </p>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <span class="card-icon"><i class="bi bi-book"></i></span>
+                <h5>Pre-Conference Tutorials</h5>
+                <p>To kickstart your learning before the main event.</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="card-icon"><i class="bi bi-mic-fill"></i></span>
+                <h5>Keynote Speakers</h5>
+                <p>Experts from around the world sharing knowledge and experiences.</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="card-icon"><i class="bi bi-laptop-code"></i></span>
+                <h5>Workshops</h5>
+                <p>On web development, automation, data science, and more.</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="card-icon"><i class="bi bi-handshake-fill"></i></span>
+                <h5>Networking Events</h5>
+                <p>Connect with developers, entrepreneurs, and tech enthusiasts.</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="card-icon"><i class="bi bi-boxes"></i></span>
+                <h5>Open Source Sprints</h5>
+                <p>Contributions to real projects and collaboration with the open-source community.</p>
+            </div>
+            
+            <div class="feature-card">
+                <span class="card-icon"><i class="bi bi-lightning-fill"></i></span>
+                <h5>Lightning Talks</h5>
+                <p>Short, focused ideas from the community in a fast-paced format.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Who participates -->
+<section class="about-section">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-people-fill"></i></div>
+        <h2>Who participates in <span class="highlight">PyCon Angola</span>?</h2>
+        <p style="margin-bottom: 30px;">
+            PyCon Angola brings together a diverse community, from beginners to experienced developers, 
+            as well as educators, entrepreneurs, and technology enthusiasts from all backgrounds.
+        </p>
+        <p style="margin-bottom: 20px;">
+            Whether you work with Python or other technologies, everyone is welcome.
+        </p>
+        
+        <div class="participants-grid">
+            <div class="participant-item">
+                <span class="item-icon"><i class="bi bi-code-square"></i></span>
+                <span>Software Development</span>
+            </div>
+            <div class="participant-item">
+                <span class="item-icon"><i class="bi bi-bar-chart-fill"></i></span>
+                <span>Data Science & AI</span>
+            </div>
+            <div class="participant-item">
+                <span class="item-icon"><i class="bi bi-rocket-takeoff"></i></span>
+                <span>Startups & Innovation</span>
+            </div>
+            <div class="participant-item">
+                <span class="item-icon"><i class="bi bi-heart-pulse-fill"></i></span>
+                <span>Health & Digital Health</span>
+            </div>
+            <div class="participant-item">
+                <span class="item-icon"><i class="bi bi-wifi"></i></span>
+                <span>Networking & Connectivity</span>
+            </div>
+            <div class="participant-item">
+                <span class="item-icon"><i class="bi bi-shield-fill-check"></i></span>
+                <span>Cybersecurity</span>
+            </div>
+            <div class="participant-item">
+                <span class="item-icon"><i class="bi bi-building"></i></span>
+                <span>Tech Entrepreneurship</span>
+            </div>
+            <div class="participant-item">
+                <span class="item-icon"><i class="bi bi-mortarboard-fill"></i></span>
+                <span>Education & Research</span>
+            </div>
+            <div class="participant-item">
+                <span class="item-icon"><i class="bi bi-person"></i></span>
+                <span>Students & Aspiring Professionals</span>
+            </div>
+            <div class="participant-item">
+                <span class="item-icon"><i class="bi bi-globe2"></i></span>
+                <span>Tech Enthusiasts</span>
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <p style="color: var(--text-muted); font-style: italic;">
+                "Whether you are a Python beginner or an experienced expert, PyCon Angola 
+                is the ideal place to connect with like-minded people and expand your 
+                knowledge in technology."
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Who makes it possible -->
+<section class="about-section">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-heart-fill"></i></div>
+        <h2>Who makes this <span class="highlight">possible</span>?</h2>
+        
+        <div class="organizer-box">
+            <h4><i class="bi bi-people-fill" style="color: var(--python-yellow);"></i> Python Angola</h4>
+            <p>
+                PyCon Angola is organized by the Python Angola community, a non-profit 
+                organization dedicated to the growth of the Python ecosystem in the country.
+            </p>
+            <p style="margin-top: 12px;">
+                The event is made possible by the generosity of sponsors and volunteers, and all 
+                revenue is reinvested in the local Python community, supporting educational 
+                initiatives, events, and the strengthening of the technology community in Angola.
+            </p>
+        </div>
+        
+        <div style="margin-top: 30px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
+            <span style="background: rgba(255,212,59,0.08); color: var(--python-yellow); padding: 6px 20px; border-radius: 50px; font-size: 0.9rem;">
+                <i class="bi bi-hand-heart me-1"></i> Volunteers
+            </span>
+            <span style="background: rgba(255,212,59,0.08); color: var(--python-yellow); padding: 6px 20px; border-radius: 50px; font-size: 0.9rem;">
+                <i class="bi bi-building me-1"></i> Sponsors
+            </span>
+            <span style="background: rgba(255,212,59,0.08); color: var(--python-yellow); padding: 6px 20px; border-radius: 50px; font-size: 0.9rem;">
+                <i class="bi bi-people me-1"></i> Community
+            </span>
+            <span style="background: rgba(255,212,59,0.08); color: var(--python-yellow); padding: 6px 20px; border-radius: 50px; font-size: 0.9rem;">
+                <i class="bi bi-graph-up me-1"></i> Ecosystem Growth
+            </span>
+        </div>
+    </div>
+</section>
+
+<!-- Call to action -->
+<section class="about-section" style="padding-bottom: 80px;">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-rocket-takeoff"></i></div>
+        <h2>Join the <span class="highlight">community</span></h2>
+        <p style="max-width: 700px; margin: 0 auto 30px;">
+            PyCon Angola is built by the community, for the community. 
+            Participate, contribute, and be part of Python's history in Angola.
+        </p>
+        
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
+            <a href="#" class="btn btn-primary-hero">
+                <i class="bi bi-envelope-paper me-2"></i>
+                Stay updated
+            </a>
+            <a href="{% url 'website:code_of_conduct_en' %}" class="btn btn-outline-hero">
+                <i class="bi bi-file-text me-2"></i>
+                Code of Conduct
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

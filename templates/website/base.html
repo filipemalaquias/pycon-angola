@@ -1,0 +1,191 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'pt' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}PyCon Angola 2027{% endblock %}</title>
+    
+    <meta name="description" content="{% block description %}PyCon Angola 2027 - A Primeira Conferência Python em Angola{% endblock %}">
+    <meta name="keywords" content="PyCon, Python, Angola, Conferência, Luanda, Tecnologia">
+    <meta name="author" content="Python Angola">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% block og_title %}PyCon Angola 2027{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}A Primeira Conferência Python em Angola{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pycon.ao">
+    <meta property="og:image" content="{% static 'images/og-image.jpg' %}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Main CSS -->
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'website:home' %}">
+                <img src="{% static 'images/pycon-logo-small.png' %}" alt="PyCon Angola" height="35">
+                <!-- <span class="brand-text">PyCon <span class="brand-highlight">Angola</span></span> -->
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link {% if request.path == '/' or request.path == '/pt/' %}active{% endif %}" href="{% url 'website:home' %}">{% block nav_home %}Início{% endblock %}</a></li>
+                    <li class="nav-item"><a class="nav-link {% if '/sobre/' in request.path or '/about/' in request.path %}active{% endif %}" href="{% url 'website:about_pt' %}">{% block nav_about %}Sobre{% endblock %}</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="{% url 'website:home' %}#call4papers">{% block nav_cfp %}Call4Papers{% endblock %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'website:home' %}#schedule">{% block nav_schedule %}Programação{% endblock %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'website:home' %}#venue">{% block nav_venue %}Local{% endblock %}</a></li> -->
+                    <li class="nav-item"><a class="nav-link {% if '/codigo-de-conduta/' in request.path or '/code-of-conduct/' in request.path %}active{% endif %}" href="{% url 'website:code_of_conduct_pt' %}">{% block nav_coc %}Código de Conduta{% endblock %}</a></li>
+                    
+                    <!-- Language Selector -->
+                    <li class="nav-item dropdown ms-2">
+                        <a class="nav-link dropdown-toggle lang-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-globe2"></i>
+                            <span class="d-none d-lg-inline ms-1" style="font-size: 0.85rem;">
+                                {% if LANGUAGE_CODE == 'pt' %}PT{% else %}EN{% endif %}
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item {% if LANGUAGE_CODE == 'pt' %}active{% endif %}" 
+                                   href="{% url 'website:switch_language' 'pt' %}">
+                                    <i class="bi bi-check2 {% if LANGUAGE_CODE != 'pt' %}invisible{% endif %} me-2"></i>
+                                    Português
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item {% if LANGUAGE_CODE == 'en' %}active{% endif %}" 
+                                   href="{% url 'website:switch_language' 'en' %}">
+                                    <i class="bi bi-check2 {% if LANGUAGE_CODE != 'en' %}invisible{% endif %} me-2"></i>
+                                    English
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'website:code_of_conduct_pt' %}">
+                                    <i class="bi bi-file-text me-2"></i> Código de Conduta
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'website:code_of_conduct_en' %}">
+                                    <i class="bi bi-file-text me-2"></i> Code of Conduct
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="footer-brand">
+                        <img src="{% static 'images/pycon-logo-small.png' %}" alt="PyCon Angola" height="30">
+                        <!-- <span>PyCon <span class="brand-highlight">Angola</span></span> -->
+                    </div>
+                    <p class="footer-description">
+                        {% block footer_description %}Construindo a comunidade Python em Angola 🇦🇴{% endblock %}
+                    </p>
+                    <div class="social-links">
+                        <a href="#" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h6>{% block footer_nav %}Navegação{% endblock %}</h6>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'website:home' %}">{% block footer_home %}Início{% endblock %}</a></li>
+                        <li><a href="{% url 'website:about_pt' %}">{% block footer_about %}Sobre{% endblock %}</a></li>
+                        <li><a href="{% url 'website:home' %}#call4papers">{% block footer_cfp %}Call4Papers{% endblock %}</a></li>
+                        <li><a href="{% url 'website:home' %}#schedule">{% block footer_schedule %}Programação{% endblock %}</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h6>{% block footer_resources %}Recursos{% endblock %}</h6>
+                    <ul class="footer-links">
+                        <li>
+                            <a href="{% url 'website:code_of_conduct_pt' %}">
+                                {% block footer_coc %}Código de Conduta{% endblock %}
+                            </a>
+                        </li>
+                        <li><a href="#">{% block footer_faq %}FAQ{% endblock %}</a></li>
+                        <li><a href="#">{% block footer_contact %}Contato{% endblock %}</a></li>
+                        <li><a href="#">{% block footer_blog %}Blog{% endblock %}</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4">
+                    <h6>{% block footer_stay %}Fique por dentro{% endblock %}</h6>
+                    <p class="newsletter-text">
+                        {% block footer_subscribe %}Receba novidades sobre a PyCon Angola{% endblock %}
+                    </p>
+                    <div class="newsletter-form">
+                        <input type="email" class="form-control" placeholder="{% block footer_email %}Seu melhor email{% endblock %}">
+                        <button class="btn btn-newsletter" type="button">
+                            <i class="bi bi-send"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2027 PyCon Angola. {% block footer_made %}Feito com{% endblock %} <i class="bi bi-heart-fill heart-icon"></i> {% block footer_by %}por{% endblock %} <strong>Python Angola</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

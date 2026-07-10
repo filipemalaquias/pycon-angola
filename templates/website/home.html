@@ -1,0 +1,539 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyCon Angola 2027 - The First Python Conference in Angola</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="PyCon Angola 2027 - The first official Python conference in Angola. Join developers, students, and companies in Luanda, September 2027.">
+    <meta name="keywords" content="PyCon, Python, Angola, Conference, Luanda, 2027, Technology">
+    <meta name="author" content="Python Angola">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="PyCon Angola 2027">
+    <meta property="og:description" content="The First Python Conference in Angola">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pycon.ao">
+    <meta property="og:image" content="{% static 'images/og-image.jpg' %}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Main CSS -->
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    
+    <style>
+        /* Hero com imagem de fundo */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            padding: 120px 0 80px;
+            background: 
+                linear-gradient(rgba(26, 42, 74, 0.85), rgba(26, 42, 74, 0.95)),
+                url("{% static 'images/luanda-skyline.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+        
+        /* Fallback se a imagem não carregar */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(55, 118, 171, 0.1), transparent 70%);
+            border-radius: 50%;
+            animation: floatOrb 20s ease-in-out infinite;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 212, 59, 0.06), transparent 70%);
+            border-radius: 50%;
+            animation: floatOrb 25s ease-in-out infinite reverse;
+        }
+        
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'images/pycon-logo-small.png' %}" alt="PyCon Angola" height="40" class="d-inline-block align-text-top me-2">
+                <span class="python-text">PyCon</span> Angola
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#speakers">Speakers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#schedule">Schedule</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sponsors">Sponsors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#venue">Venue</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="#" class="btn btn-register-nav">
+                            <i class="bi bi-person-plus me-1"></i>Register
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7">
+                    <div class="hero-badge">
+                        <i class="bi bi-calendar-event me-2"></i>
+                        September 2027 • Luanda, Angola
+                    </div>
+                    <h1>
+                        <span class="highlight">PyCon</span><br>
+                        Angola 2027
+                    </h1>
+                    <h2>Building the Future of Python in Angola</h2>
+                    <p class="hero-description">
+                        The first official Python conference in Angola, bringing together 
+                        developers, students, educators, and companies to shape the future 
+                        of technology.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary-hero me-3 mb-2">
+                            <i class="bi bi-ticket me-2"></i>Get Tickets
+                        </a>
+                        <a href="#" class="btn btn-outline-hero mb-2">
+                            <i class="bi bi-building me-2"></i>Become a Sponsor
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="countdown-card">
+                        <h5 class="text-center mb-4" style="color: rgba(255,255,255,0.7);">
+                            <i class="bi bi-clock me-2"></i>Countdown to PyCon Angola
+                        </h5>
+                        <div class="row text-center">
+                            <div class="col-3 countdown-item">
+                                <div class="number" id="days">00</div>
+                                <div class="label">Days</div>
+                            </div>
+                            <div class="col-1 countdown-divider">:</div>
+                            <div class="col-3 countdown-item">
+                                <div class="number" id="hours">00</div>
+                                <div class="label">Hours</div>
+                            </div>
+                            <div class="col-1 countdown-divider">:</div>
+                            <div class="col-3 countdown-item">
+                                <div class="number" id="minutes">00</div>
+                                <div class="label">Minutes</div>
+                            </div>
+                            <div class="col-1 countdown-divider">:</div>
+                            <div class="col-3 countdown-item">
+                                <div class="number" id="seconds">00</div>
+                                <div class="label">Seconds</div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <span style="color: rgba(255,255,255,0.4); font-size: 0.85rem;">
+                                <i class="bi bi-geo-alt me-1"></i> Luanda, Angola
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section-padding" id="about" style="background: linear-gradient(180deg, var(--primary-blue), #0f1a30);">
+        <div class="container">
+            <div class="text-center" data-aos="fade-up">
+                <h2 class="section-title">What is <span class="text-python-yellow">PyCon Angola</span>?</h2>
+                <p class="section-subtitle">
+                    PyCon Angola is the official Python conference in Angola, dedicated to 
+                    growing the Python community and fostering innovation in the country.
+                </p>
+            </div>
+            
+            <div class="row g-4 mt-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-custom">
+                        <div class="icon">
+                            <img src="{% static 'images/angola-flag.png' %}" alt="Angola" style="width: 60px; height: 60px; object-fit: contain;">
+                        </div>
+                        <h4>First Python Conference</h4>
+                        <p>Making history by hosting the first official Python conference in Angola.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-custom">
+                        <div class="icon">
+                            <i class="bi bi-people-fill" style="font-size: 3.5rem; color: var(--python-yellow);"></i>
+                        </div>
+                        <h4>Community Building</h4>
+                        <p>Bringing together developers, students, and companies to strengthen the Python ecosystem.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-custom">
+                        <div class="icon">
+                            <i class="bi bi-rocket-fill" style="font-size: 3.5rem; color: var(--python-blue);"></i>
+                        </div>
+                        <h4>Future of Technology</h4>
+                        <p>Empowering the next generation of Angolan tech professionals through Python.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section class="section-padding" style="background: var(--primary-blue);">
+        <div class="container">
+            <div class="text-center" data-aos="fade-up">
+                <h2 class="section-title">Conference <span class="text-python-yellow">Highlights</span></h2>
+                <p class="section-subtitle">What to expect at PyCon Angola 2027</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-custom">
+                        <div class="icon">
+                            <i class="bi bi-people-fill" style="font-size: 3.5rem; color: var(--python-yellow);"></i>
+                        </div>
+                        <h4>20+ Speakers</h4>
+                        <p>Local and international experts</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-custom">
+                        <div class="icon">
+                            <i class="bi bi-laptop-code" style="font-size: 3.5rem; color: var(--python-blue);"></i>
+                        </div>
+                        <h4>Hands-on Workshops</h4>
+                        <p>Learn by doing</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-custom">
+                        <div class="icon">
+                            <i class="bi bi-trophy-fill" style="font-size: 3.5rem; color: var(--python-yellow);"></i>
+                        </div>
+                        <h4>Community First</h4>
+                        <p>Networking & collaboration</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card-custom">
+                        <div class="icon">
+                            <i class="bi bi-globe2" style="font-size: 3.5rem; color: var(--python-blue);"></i>
+                        </div>
+                        <h4>International Guests</h4>
+                        <p>Global Python community</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speakers Section -->
+    <section class="section-padding" id="speakers" style="background: linear-gradient(180deg, var(--primary-blue), #0f1a30);">
+        <div class="container">
+            <div class="text-center" data-aos="fade-up">
+                <h2 class="section-title">Featured <span class="text-python-yellow">Speakers</span></h2>
+                <p class="section-subtitle">Meet the experts who will share their knowledge</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="flip-left" data-aos-delay="100">
+                    <div class="speaker-card">
+                        <div class="speaker-image">
+                            <img src="{% static 'images/speakers/ana-oliveira.jpg' %}" alt="Ana Oliveira" class="img-fluid rounded-circle" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h5>Ana Oliveira</h5>
+                        <div class="role">Senior Developer</div>
+                        <div class="bio" style="color: var(--text-muted); font-size: 0.85rem; margin-top: 10px;">Python Angola</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="flip-left" data-aos-delay="200">
+                    <div class="speaker-card">
+                        <div class="speaker-image">
+                            <img src="{% static 'images/speakers/carlos-silva.jpg' %}" alt="Carlos Silva" class="img-fluid rounded-circle" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h5>Carlos Silva</h5>
+                        <div class="role">Data Scientist</div>
+                        <div class="bio" style="color: var(--text-muted); font-size: 0.85rem; margin-top: 10px;">AI Researcher</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="flip-left" data-aos-delay="300">
+                    <div class="speaker-card">
+                        <div class="speaker-image">
+                            <img src="{% static 'images/speakers/pedro-santos.jpg' %}" alt="Pedro Santos" class="img-fluid rounded-circle" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h5>Pedro Santos</h5>
+                        <div class="role">Python Core Developer</div>
+                        <div class="bio" style="color: var(--text-muted); font-size: 0.85rem; margin-top: 10px;">Open Source Contributor</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="flip-left" data-aos-delay="400">
+                    <div class="speaker-card">
+                        <div class="speaker-image">
+                            <img src="{% static 'images/speakers/maria-gomes.jpg' %}" alt="Maria Gomes" class="img-fluid rounded-circle" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h5>Maria Gomes</h5>
+                        <div class="role">Tech Educator</div>
+                        <div class="bio" style="color: var(--text-muted); font-size: 0.85rem; margin-top: 10px;">STEM Advocate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="section-padding" id="schedule" style="background: var(--primary-blue);">
+        <div class="container">
+            <div class="text-center" data-aos="fade-up">
+                <h2 class="section-title">Event <span class="text-python-yellow">Schedule</span></h2>
+                <p class="section-subtitle">Coming soon! Stay tuned for the full agenda</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card-custom">
+                        <i class="bi bi-calendar2-week" style="font-size: 3rem; color: var(--python-yellow);"></i>
+                        <h4 class="mt-3">September 2027</h4>
+                        <p style="color: var(--text-muted);">Full schedule will be announced soon</p>
+                        <div class="d-flex justify-content-center gap-4 mt-3">
+                            <div>
+                                <i class="bi bi-clock" style="color: var(--python-blue);"></i>
+                                <span style="color: var(--text-muted);"> 09:00 - 18:00</span>
+                            </div>
+                            <div>
+                                <i class="bi bi-geo-alt" style="color: var(--python-blue);"></i>
+                                <span style="color: var(--text-muted);"> Luanda, Angola</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsors Section -->
+    <section class="section-padding" id="sponsors" style="background: linear-gradient(180deg, var(--primary-blue), #0f1a30);">
+        <div class="container">
+            <div class="text-center" data-aos="fade-up">
+                <h2 class="section-title">Our <span class="text-python-yellow">Sponsors</span></h2>
+                <p class="section-subtitle">Supporting the Python community in Angola</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="sponsor-tier tier-gold">
+                        <div class="tier-badge">
+                            <i class="bi bi-star-fill me-1"></i>Gold Sponsor
+                        </div>
+                        <div class="mb-3">
+                            <img src="{% static 'images/sponsors/gold-sponsor.png' %}" alt="Gold Sponsor" class="img-fluid" style="max-height: 80px;">
+                        </div>
+                        <h4>Tech Corp Angola</h4>
+                        <p style="color: var(--text-muted);">Supporting innovation in Angola</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="sponsor-tier tier-silver">
+                        <div class="tier-badge">
+                            <i class="bi bi-star me-1"></i>Silver Sponsor
+                        </div>
+                        <div class="mb-3">
+                            <img src="{% static 'images/sponsors/silver-sponsor.png' %}" alt="Silver Sponsor" class="img-fluid" style="max-height: 80px;">
+                        </div>
+                        <h4>Innovation Hub</h4>
+                        <p style="color: var(--text-muted);">Investing in local talent</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="sponsor-tier tier-bronze">
+                        <div class="tier-badge">
+                            <i class="bi bi-star-half me-1"></i>Bronze Sponsor
+                        </div>
+                        <div class="mb-3">
+                            <img src="{% static 'images/sponsors/bronze-sponsor.png' %}" alt="Bronze Sponsor" class="img-fluid" style="max-height: 80px;">
+                        </div>
+                        <h4>Open Source Angola</h4>
+                        <p style="color: var(--text-muted);">Supporting open source</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section class="section-padding" id="venue" style="background: var(--primary-blue);">
+        <div class="container">
+            <div class="text-center" data-aos="fade-up">
+                <h2 class="section-title">Event <span class="text-python-yellow">Venue</span></h2>
+                <p class="section-subtitle">Join us in the heart of Luanda, Angola</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="venue-card">
+                        <h4><i class="bi bi-geo-alt me-2" style="color: var(--python-yellow);"></i> Location</h4>
+                        <p style="color: var(--text-muted);">Luanda, Angola</p>
+                        <h4 class="mt-4"><i class="bi bi-calendar me-2" style="color: var(--python-yellow);"></i> Date</h4>
+                        <p style="color: var(--text-muted);">September 2027</p>
+                        <h4 class="mt-4"><i class="bi bi-clock me-2" style="color: var(--python-yellow);"></i> Schedule</h4>
+                        <p style="color: var(--text-muted);">Coming soon</p>
+                        <div class="mt-4">
+                            <a href="#" class="btn btn-primary-hero">
+                                <i class="bi bi-map me-2"></i>View on Map
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="venue-map" style="position: relative; overflow: hidden; border-radius: 16px;">
+                        <img src="{% static 'images/venue-map.jpg' %}" alt="Venue Map - Luanda" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(26, 42, 74, 0.8); padding: 10px 20px; border-radius: 50px; backdrop-filter: blur(10px);">
+                            <i class="bi bi-geo-alt-fill" style="color: var(--python-yellow);"></i>
+                            <span style="color: white; font-weight: 500;">Luanda, Angola</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5>
+                        <img src="{% static 'images/pycon-logo-small.png' %}" alt="PyCon Angola" height="30" class="me-2">
+                        PyCon Angola
+                    </h5>
+                    <p style="color: var(--text-muted);">Building the Python Community in Angola 🇦🇴</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h5>Community</h5>
+                    <a href="#"><i class="bi bi-github me-1"></i>GitHub</a>
+                    <a href="#"><i class="bi bi-linkedin me-1"></i>LinkedIn</a>
+                    <a href="#"><i class="bi bi-instagram me-1"></i>Instagram</a>
+                    <a href="#"><i class="bi bi-facebook me-1"></i>Facebook</a>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h5>Resources</h5>
+                    <a href="#"><i class="bi bi-book me-1"></i>Code of Conduct</a>
+                    <a href="#"><i class="bi bi-envelope me-1"></i>Newsletter</a>
+                    <a href="#"><i class="bi bi-telephone me-1"></i>Contact</a>
+                    <a href="#"><i class="bi bi-blog me-1"></i>Blog</a>
+                </div>
+                <div class="col-lg-4">
+                    <h5><i class="bi bi-envelope-paper me-2"></i>Stay Updated</h5>
+                    <p style="color: var(--text-muted);">Subscribe to our newsletter</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Your email" 
+                               style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 50px 0 0 50px;">
+                        <button class="btn btn-register-nav" type="button" style="border-radius: 0 50px 50px 0;">
+                            <i class="bi bi-send me-1"></i>Subscribe
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                <p>© 2027 PyCon Angola. Made with <i class="bi bi-heart-fill" style="color: var(--python-yellow);"></i> by <strong>Python Angola</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Countdown Timer
+        const target = new Date("September 24, 2027 09:00:00 GMT+0100").getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = target - now;
+            
+            if (distance < 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

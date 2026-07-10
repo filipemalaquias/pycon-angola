@@ -1,0 +1,600 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}Código de Conduta - PyCon Angola 2027{% endblock %}
+{% block description %}Código de Conduta da PyCon Angola 2027 - Um ambiente seguro, respeitoso e inclusivo para todos.{% endblock %}
+{% block og_title %}Código de Conduta - PyCon Angola 2027{% endblock %}
+{% block og_description %}Código de Conduta da PyCon Angola 2027.{% endblock %}
+
+{% block nav_home %}Início{% endblock %}
+{% block nav_about %}Sobre{% endblock %}
+{% block nav_cfp %}Call4Papers{% endblock %}
+{% block nav_schedule %}Programação{% endblock %}
+{% block nav_venue %}Local{% endblock %}
+{% block nav_coc %}Código de Conduta{% endblock %}
+{% block nav_newsletter %}Newsletter{% endblock %}
+
+{% block footer_description %}Construindo a comunidade Python em Angola 🇦🇴{% endblock %}
+{% block footer_nav %}Navegação{% endblock %}
+{% block footer_home %}Início{% endblock %}
+{% block footer_about %}Sobre{% endblock %}
+{% block footer_cfp %}Call4Papers{% endblock %}
+{% block footer_schedule %}Programação{% endblock %}
+{% block footer_resources %}Recursos{% endblock %}
+{% block footer_coc %}Código de Conduta{% endblock %}
+{% block footer_faq %}FAQ{% endblock %}
+{% block footer_contact %}Contato{% endblock %}
+{% block footer_blog %}Blog{% endblock %}
+{% block footer_stay %}Fique por dentro{% endblock %}
+{% block footer_subscribe %}Receba novidades sobre a PyCon Angola{% endblock %}
+{% block footer_email %}Seu melhor email{% endblock %}
+{% block footer_made %}Feito com{% endblock %}
+{% block footer_by %}por{% endblock %}
+
+{% block content %}
+
+<style>
+    .page-header {
+        padding: 150px 0 80px;
+        background: 
+            linear-gradient(rgba(10, 14, 26, 0.85), rgba(15, 26, 46, 0.92)),
+            url("{% static 'images/luanda-skyline.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+    }
+    
+    .page-header h1 {
+        font-size: 3.5rem;
+        font-weight: 900;
+    }
+    
+    .page-header .breadcrumb {
+        background: transparent;
+        padding: 0;
+        justify-content: center;
+    }
+    
+    .page-header .breadcrumb-item a {
+        color: var(--text-muted);
+        text-decoration: none;
+    }
+    
+    .page-header .breadcrumb-item.active {
+        color: var(--python-yellow);
+    }
+    
+    .page-header .breadcrumb-item::before {
+        color: var(--text-muted);
+    }
+    
+    .conduct-section {
+        padding: 60px 0;
+    }
+    
+    .conduct-section:nth-child(even) {
+        background: var(--primary-blue);
+    }
+    
+    .conduct-section:nth-child(odd) {
+        background: var(--primary-dark);
+    }
+    
+    .conduct-section .section-icon {
+        font-size: 3rem;
+        color: var(--python-yellow);
+        margin-bottom: 20px;
+    }
+    
+    .conduct-section h2 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+    }
+    
+    .conduct-section h2 .highlight {
+        color: var(--python-yellow);
+    }
+    
+    .conduct-section p {
+        color: var(--text-muted);
+        font-size: 1.05rem;
+        line-height: 1.8;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .conduct-list {
+        list-style: none;
+        padding: 0;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .conduct-list li {
+        display: flex;
+        gap: 16px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        color: var(--text-muted);
+        font-size: 1rem;
+        line-height: 1.6;
+        align-items: flex-start;
+    }
+    
+    .conduct-list li:last-child {
+        border-bottom: none;
+    }
+    
+    .conduct-list .list-icon {
+        color: var(--python-yellow);
+        font-size: 1.2rem;
+        margin-top: 2px;
+        flex-shrink: 0;
+    }
+    
+    .conduct-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .conduct-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: var(--border-radius);
+        padding: 24px;
+        text-align: center;
+        transition: var(--transition);
+    }
+    
+    .conduct-card:hover {
+        border-color: rgba(255, 212, 59, 0.2);
+        transform: translateY(-3px);
+    }
+    
+    .conduct-card .card-icon {
+        font-size: 2rem;
+        color: var(--python-yellow);
+        margin-bottom: 10px;
+        display: block;
+    }
+    
+    .conduct-card h5 {
+        font-weight: 700;
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+    
+    .conduct-card p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin: 0;
+    }
+    
+    .contact-box {
+        background: rgba(255, 212, 59, 0.05);
+        border: 1px solid rgba(255, 212, 59, 0.1);
+        border-radius: var(--border-radius-lg);
+        padding: 40px;
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .contact-box .email {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--python-yellow);
+        text-decoration: none;
+    }
+    
+    .contact-box .email:hover {
+        text-decoration: underline;
+    }
+    
+    .contact-box p {
+        color: var(--text-muted);
+        margin-bottom: 8px;
+    }
+    
+    @media (max-width: 768px) {
+        .page-header h1 {
+            font-size: 2.2rem;
+        }
+        
+        .conduct-section h2 {
+            font-size: 1.8rem;
+        }
+        
+        .conduct-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .conduct-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'website:home' %}"><i class="bi bi-house"></i> Início</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Código de Conduta</li>
+            </ol>
+        </nav>
+        <h1>Código de <span class="highlight">Conduta</span></h1>
+        <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin: 16px auto 0;">
+            Um ambiente seguro, respeitoso e inclusivo para todos
+        </p>
+    </div>
+</section>
+
+<!-- Missão -->
+<section class="conduct-section">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-bullseye"></i></div>
+        <h2>Nossa <span class="highlight">Missão</span></h2>
+        <p>
+            A PyCon Angola é uma conferência dedicada à comunidade Python, criada para promover 
+            a aprendizagem, a colaboração, a inovação e a partilha de conhecimento.
+        </p>
+        <p style="margin-top: 16px;">
+            Estamos comprometidos em proporcionar um ambiente acolhedor, seguro, respeitoso e 
+            inclusivo para todos os participantes, independentemente da sua idade, género, 
+            identidade de género, orientação sexual, deficiência, aparência física, etnia, 
+            nacionalidade, religião, nível de experiência ou qualquer outra característica pessoal.
+        </p>
+    </div>
+</section>
+
+<!-- Comportamento Esperado -->
+<section class="conduct-section">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-hand-thumbs-up"></i></div>
+        <h2>Comportamento <span class="highlight">Esperado</span></h2>
+        <p style="margin-bottom: 30px;">
+            Todos os participantes devem:
+        </p>
+        <ul class="conduct-list text-start">
+            <li>
+                <span class="list-icon"><i class="bi bi-check-circle-fill"></i></span>
+                Tratar todas as pessoas com respeito e profissionalismo.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-check-circle-fill"></i></span>
+                Incentivar um ambiente colaborativo e inclusivo.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-check-circle-fill"></i></span>
+                Respeitar opiniões diferentes.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-check-circle-fill"></i></span>
+                Utilizar linguagem apropriada.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-check-circle-fill"></i></span>
+                Ajudar novos membros da comunidade.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-check-circle-fill"></i></span>
+                Respeitar os horários e orientações da organização.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-check-circle-fill"></i></span>
+                Cumprir as leis locais e as políticas do evento.
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- Comportamentos Inaceitáveis -->
+<section class="conduct-section">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-x-circle"></i></div>
+        <h2>Comportamentos <span class="highlight">Inaceitáveis</span></h2>
+        <p style="margin-bottom: 30px;">
+            Não serão tolerados:
+        </p>
+        <div class="conduct-grid">
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-slash-circle"></i></span>
+                <h5>Assédio</h5>
+                <p>De qualquer natureza</p>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-slash-circle"></i></span>
+                <h5>Discriminação</h5>
+                <p>Qualquer forma de preconceito</p>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-slash-circle"></i></span>
+                <h5>Insultos</h5>
+                <p>Ameaças ou ofensas</p>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-slash-circle"></i></span>
+                <h5>Intimidação</h5>
+                <p>Comportamento ameaçador</p>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-slash-circle"></i></span>
+                <h5>Comentários Ofensivos</h5>
+                <p>Sobre género, raça, religião, deficiência ou orientação sexual</p>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-slash-circle"></i></span>
+                <h5>Contacto Físico</h5>
+                <p>Não solicitado ou indesejado</p>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-slash-circle"></i></span>
+                <h5>Fotografias</h5>
+                <p>Gravar participantes contra a sua vontade</p>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-slash-circle"></i></span>
+                <h5>Interrupções</h5>
+                <p>Constantes em palestras</p>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-slash-circle"></i></span>
+                <h5>Linguagem Abusiva</h5>
+                <p>Palavrões ou ofensas</p>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-slash-circle"></i></span>
+                <h5>Comportamento Agressivo</h5>
+                <p>Atitudes violentas</p>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-slash-circle"></i></span>
+                <h5>Atividades Ilegais</h5>
+                <p>Qualquer ação contra a lei</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Assédio -->
+<section class="conduct-section">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-shield-exclamation"></i></div>
+        <h2><span class="highlight">Assédio</span></h2>
+        <p style="margin-bottom: 30px;">
+            Assédio inclui, entre outros:
+        </p>
+        <ul class="conduct-list text-start">
+            <li>
+                <span class="list-icon"><i class="bi bi-dash-circle"></i></span>
+                Comentários ofensivos.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-dash-circle"></i></span>
+                Piadas discriminatórias.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-dash-circle"></i></span>
+                Intimidação verbal ou física.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-dash-circle"></i></span>
+                Perseguição.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-dash-circle"></i></span>
+                Divulgação de informações pessoais sem autorização.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-dash-circle"></i></span>
+                Atenção sexual indesejada.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-dash-circle"></i></span>
+                Mensagens ofensivas em redes sociais relacionadas com o evento.
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- Aplicação -->
+<section class="conduct-section">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-clipboard-check"></i></div>
+        <h2><span class="highlight">Aplicação</span></h2>
+        <p style="margin-bottom: 20px;">
+            Este Código de Conduta aplica-se a:
+        </p>
+        <div class="conduct-grid">
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-person"></i></span>
+                <h5>Participantes</h5>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-people"></i></span>
+                <h5>Organizadores</h5>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-mic"></i></span>
+                <h5>Palestrantes</h5>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-building"></i></span>
+                <h5>Patrocinadores</h5>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-hand-heart"></i></span>
+                <h5>Voluntários</h5>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-briefcase"></i></span>
+                <h5>Expositores</h5>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-person-plus"></i></span>
+                <h5>Convidados</h5>
+            </div>
+        </div>
+        <p style="margin-top: 30px;">
+            <strong>Incluindo:</strong> Conferência presencial, Workshops, Hackathons, 
+            Eventos sociais, Canais online e Redes sociais oficiais.
+        </p>
+    </div>
+</section>
+
+<!-- Denúncias -->
+<section class="conduct-section">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-shield-lock"></i></div>
+        <h2><span class="highlight">Denúncias</span></h2>
+        <p>
+            Se presenciares ou fores vítima de qualquer comportamento inadequado, 
+            informa imediatamente a organização.
+        </p>
+        <p style="margin-top: 16px;">
+            Os relatos serão tratados:
+        </p>
+        <ul class="conduct-list text-start">
+            <li>
+                <span class="list-icon"><i class="bi bi-check-circle-fill"></i></span>
+                Com <strong>confidencialidade</strong>.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-check-circle-fill"></i></span>
+                Com <strong>imparcialidade</strong>.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-check-circle-fill"></i></span>
+                Sem qualquer tipo de <strong>retaliação</strong>.
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- Medidas Disciplinares -->
+<section class="conduct-section">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-gavel"></i></div>
+        <h2>Medidas <span class="highlight">Disciplinares</span></h2>
+        <p style="margin-bottom: 30px;">
+            A organização poderá:
+        </p>
+        <ul class="conduct-list text-start">
+            <li>
+                <span class="list-icon"><i class="bi bi-arrow-right-circle"></i></span>
+                Emitir advertência verbal.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-arrow-right-circle"></i></span>
+                Emitir advertência escrita.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-arrow-right-circle"></i></span>
+                Solicitar que o comportamento cesse imediatamente.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-arrow-right-circle"></i></span>
+                Remover o participante de determinada atividade.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-arrow-right-circle"></i></span>
+                Expulsar o participante do evento sem reembolso.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-arrow-right-circle"></i></span>
+                Impedir a participação em futuras edições da PyCon Angola.
+            </li>
+            <li>
+                <span class="list-icon"><i class="bi bi-arrow-right-circle"></i></span>
+                Acionar as autoridades competentes quando necessário.
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- Inclusão -->
+<section class="conduct-section">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-heart"></i></div>
+        <h2><span class="highlight">Inclusão</span></h2>
+        <p>
+            A PyCon Angola acredita que a diversidade fortalece a comunidade Python.
+        </p>
+        <p style="margin-top: 16px;">
+            Todos são bem-vindos, independentemente de:
+        </p>
+        <div class="conduct-grid" style="margin-top: 20px;">
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-flag"></i></span>
+                <h5>Nacionalidade</h5>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-palette"></i></span>
+                <h5>Cor</h5>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-gender-ambiguous"></i></span>
+                <h5>Sexo</h5>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-gender-trans"></i></span>
+                <h5>Identidade de género</h5>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-heart"></i></span>
+                <h5>Orientação sexual</h5>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-church"></i></span>
+                <h5>Religião</h5>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-person-wheelchair"></i></span>
+                <h5>Deficiência</h5>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-calendar3"></i></span>
+                <h5>Idade</h5>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-graph-up"></i></span>
+                <h5>Nível de experiência</h5>
+            </div>
+            <div class="conduct-card">
+                <span class="card-icon"><i class="bi bi-briefcase"></i></span>
+                <h5>Profissão</h5>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contacto -->
+<section class="conduct-section" style="padding-bottom: 80px;">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-envelope"></i></div>
+        <h2><span class="highlight">Contacto</span></h2>
+        <p style="margin-bottom: 30px;">
+            Caso necessites de ajuda durante o evento:
+        </p>
+        <div class="contact-box">
+            <p><i class="bi bi-envelope-fill" style="color: var(--python-yellow);"></i> Email</p>
+            <a href="mailto:conduct@pyconangola.org" class="email">
+                conduct@pyconangola.org
+            </a>
+            <p style="margin-top: 16px; font-size: 0.9rem;">
+                <i class="bi bi-people-fill" style="color: var(--python-yellow);"></i>
+                Equipa Organizadora – PyCon Angola
+            </p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
