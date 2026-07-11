@@ -17,7 +17,11 @@ urlpatterns = [
     path('codigo-de-conduta/', views.code_of_conduct_pt, name='code_of_conduct_pt'),
     path('code-of-conduct/', views.code_of_conduct_en, name='code_of_conduct_en'),
     
-    # Switch Language - AMBAS AS URLS FUNCIONAM
+    # PyDay
+    path('pyday/', views.pyday_pt, name='pyday_pt'),
+    path('pyday-angola/', views.pyday_en, name='pyday_en'),
+    
+    # Switch Language
     path('mudar-idioma/<str:lang>/', views.switch_language, name='switch_language'),
     path('switch-language/<str:lang>/', views.switch_language, name='switch_language'),
 ]

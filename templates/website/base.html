@@ -83,6 +83,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link {% if '/pyday/' in request.path or '/pyday-angola/' in request.path %}active{% endif %}" 
+                           href="{% if LANGUAGE_CODE == 'en' %}{% url 'website:pyday_en' %}{% else %}{% url 'website:pyday_pt' %}{% endif %}">
+                            {% block nav_pyday %}PyDay{% endblock %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link {% if '/codigo-de-conduta/' in request.path or '/code-of-conduct/' in request.path %}active{% endif %}" 
                            href="{% if LANGUAGE_CODE == 'en' %}{% url 'website:code_of_conduct_en' %}{% else %}{% url 'website:code_of_conduct_pt' %}{% endif %}">
                             {% block nav_coc %}Código de Conduta{% endblock %}

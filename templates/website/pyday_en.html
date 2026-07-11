@@ -1,0 +1,541 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %}PyDay Angola 2026 - Namibe{% endblock %}
+{% block description %}PyDay Angola 2026 - The first step towards PyCon Angola. A day dedicated to Python in Namibe.{% endblock %}
+{% block og_title %}PyDay Angola 2026 - Namibe{% endblock %}
+{% block og_description %}The first step towards PyCon Angola. A day dedicated to Python in Namibe.{% endblock %}
+
+{% block nav_home %}Home{% endblock %}
+{% block nav_about %}About{% endblock %}
+{% block nav_pyday %}PyDay{% endblock %}
+{% block nav_coc %}Code of Conduct{% endblock %}
+
+{% block footer_description %}Building the Python community in Angola 🇦🇴{% endblock %}
+{% block footer_nav %}Navigation{% endblock %}
+{% block footer_home %}Home{% endblock %}
+{% block footer_about %}About{% endblock %}
+{% block footer_pyday %}PyDay{% endblock %}
+{% block footer_resources %}Resources{% endblock %}
+{% block footer_coc %}Code of Conduct{% endblock %}
+{% block footer_faq %}FAQ{% endblock %}
+{% block footer_contact %}Contact{% endblock %}
+{% block footer_blog %}Blog{% endblock %}
+{% block footer_stay %}Stay tuned{% endblock %}
+{% block footer_subscribe %}Get updates about PyCon Angola{% endblock %}
+{% block footer_email %}Your best email{% endblock %}
+{% block footer_made %}Made with{% endblock %}
+{% block footer_by %}by{% endblock %}
+
+{% block content %}
+
+<style>
+    .page-header {
+        padding: 150px 0 80px;
+        background: 
+            linear-gradient(rgba(10, 14, 26, 0.85), rgba(15, 26, 46, 0.92)),
+            url("{% static 'images/luanda-skyline.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+    }
+    
+    .page-header h1 {
+        font-size: 3.5rem;
+        font-weight: 900;
+    }
+    
+    .page-header .breadcrumb {
+        background: transparent;
+        padding: 0;
+        justify-content: center;
+    }
+    
+    .page-header .breadcrumb-item a {
+        color: var(--text-muted);
+        text-decoration: none;
+    }
+    
+    .page-header .breadcrumb-item.active {
+        color: var(--python-yellow);
+    }
+    
+    .page-header .breadcrumb-item::before {
+        color: var(--text-muted);
+    }
+    
+    .pyday-section {
+        padding: 60px 0;
+    }
+    
+    .pyday-section:nth-child(even) {
+        background: var(--primary-blue);
+    }
+    
+    .pyday-section:nth-child(odd) {
+        background: var(--primary-dark);
+    }
+    
+    .pyday-section .section-icon {
+        font-size: 3rem;
+        color: var(--python-yellow);
+        margin-bottom: 20px;
+    }
+    
+    .pyday-section h2 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+    }
+    
+    .pyday-section h2 .highlight {
+        color: var(--python-yellow);
+    }
+    
+    .pyday-section p {
+        color: var(--text-muted);
+        font-size: 1.05rem;
+        line-height: 1.8;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        max-width: 800px;
+        margin: 20px auto 0;
+    }
+    
+    .info-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: var(--border-radius);
+        padding: 20px;
+        text-align: center;
+        transition: var(--transition);
+    }
+    
+    .info-card:hover {
+        border-color: rgba(255, 212, 59, 0.2);
+        transform: translateY(-3px);
+    }
+    
+    .info-card .info-icon {
+        font-size: 2rem;
+        color: var(--python-yellow);
+        display: block;
+        margin-bottom: 8px;
+    }
+    
+    .info-card h5 {
+        font-weight: 700;
+        font-size: 1rem;
+        margin-bottom: 4px;
+    }
+    
+    .info-card p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin: 0;
+    }
+    
+    .schedule-list {
+        list-style: none;
+        padding: 0;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    
+    .schedule-list li {
+        display: flex;
+        gap: 20px;
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        color: var(--text-muted);
+        font-size: 1rem;
+        line-height: 1.6;
+        align-items: flex-start;
+    }
+    
+    .schedule-list li:last-child {
+        border-bottom: none;
+    }
+    
+    .schedule-list .time {
+        color: var(--python-yellow);
+        font-weight: 700;
+        min-width: 100px;
+        flex-shrink: 0;
+    }
+    
+    .schedule-list .event {
+        color: var(--text-light);
+    }
+    
+    .schedule-list .desc {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        display: block;
+        margin-top: 2px;
+    }
+    
+    .audience-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
+        max-width: 600px;
+        margin: 20px auto 0;
+    }
+    
+    .audience-item {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: var(--border-radius);
+        padding: 12px 16px;
+        text-align: center;
+        transition: var(--transition);
+    }
+    
+    .audience-item:hover {
+        border-color: rgba(255, 212, 59, 0.2);
+    }
+    
+    .audience-item .audience-icon {
+        font-size: 1.5rem;
+        color: var(--python-yellow);
+        display: block;
+        margin-bottom: 4px;
+    }
+    
+    .audience-item span {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+    
+    .highlight-box {
+        background: rgba(255, 212, 59, 0.05);
+        border: 1px solid rgba(255, 212, 59, 0.1);
+        border-radius: var(--border-radius-lg);
+        padding: 30px;
+        max-width: 700px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .highlight-box .big-icon {
+        font-size: 3rem;
+        color: var(--python-yellow);
+        margin-bottom: 12px;
+        display: block;
+    }
+    
+    .highlight-box h4 {
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+    
+    .highlight-box p {
+        color: var(--text-muted);
+        font-size: 1rem;
+        line-height: 1.7;
+        margin: 0;
+    }
+    
+    .btn-outline-light {
+        background: transparent;
+        color: var(--text-light);
+        padding: 12px 32px;
+        border-radius: 50px;
+        font-weight: 600;
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        transition: var(--transition);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 16px;
+    }
+    
+    .btn-outline-light:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--text-light);
+        color: var(--text-light);
+    }
+    
+    @media (max-width: 768px) {
+        .page-header h1 {
+            font-size: 2.2rem;
+        }
+        
+        .pyday-section h2 {
+            font-size: 1.8rem;
+        }
+        
+        .schedule-list li {
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .schedule-list .time {
+            min-width: auto;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .info-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .audience-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+</style>
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'website:home' %}"><i class="bi bi-house"></i> Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">PyDay Angola</li>
+            </ol>
+        </nav>
+        <h1>PyDay <span class="highlight">Angola</span></h1>
+        <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin: 16px auto 0;">
+            The first step towards PyCon Angola
+        </p>
+    </div>
+</section>
+
+<!-- About PyDay -->
+<section class="pyday-section">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-rocket-takeoff"></i></div>
+        <h2>What is <span class="highlight">PyDay Angola</span>?</h2>
+        <p>
+            PyDay Angola is a preparatory event for PyCon Angola, an initiative to 
+            warm up the Python community in the country. It will take place in <strong>Namibe</strong>, 
+            a region with great technological potential that will host the first step 
+            of the Python community in Angola.
+        </p>
+        <p style="margin-top: 16px;">
+            <strong>Building the Python Community in Angola</strong> — this is our 
+            purpose. PyDay is the starting point to connect enthusiasts, developers, 
+            students, and companies who want to be part of the Python ecosystem in Angola.
+        </p>
+    </div>
+</section>
+
+<!-- Information -->
+<section class="pyday-section">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-info-circle"></i></div>
+        <h2>Event <span class="highlight">Information</span></h2>
+        
+        <div class="info-grid">
+            <div class="info-card">
+                <span class="info-icon"><i class="bi bi-calendar-event"></i></span>
+                <h5>Date</h5>
+                <p>August 23, 2026</p>
+            </div>
+            <div class="info-card">
+                <span class="info-icon"><i class="bi bi-geo-alt-fill"></i></span>
+                <h5>Location</h5>
+                <p>Namibe, Angola</p>
+            </div>
+            <div class="info-card">
+                <span class="info-icon"><i class="bi bi-clock"></i></span>
+                <h5>Time</h5>
+                <p>08:30 - 16:30</p>
+            </div>
+            <div class="info-card">
+                <span class="info-icon"><i class="bi bi-people-fill"></i></span>
+                <h5>Audience</h5>
+                <p>All levels</p>
+            </div>
+        </div>
+        
+        <div class="highlight-box" style="margin-top: 30px;">
+            <span class="big-icon"><i class="bi bi-hand-thumbs-up"></i></span>
+            <h4>Everyone is welcome!</h4>
+            <p>
+                Even if you've never programmed in Python before, you should feel welcome. 
+                PyDay is an open space to learn, share, and build the community.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Audience -->
+<section class="pyday-section">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-people-fill"></i></div>
+        <h2>Who is <span class="highlight">PyDay</span> for?</h2>
+        <p style="margin-bottom: 20px;">
+            PyDay Angola is for everyone interested in technology and Python:
+        </p>
+        
+        <div class="audience-grid">
+            <div class="audience-item">
+                <span class="audience-icon"><i class="bi bi-mortarboard-fill"></i></span>
+                <span>Students</span>
+            </div>
+            <div class="audience-item">
+                <span class="audience-icon"><i class="bi bi-person-workspace"></i></span>
+                <span>Teachers</span>
+            </div>
+            <div class="audience-item">
+                <span class="audience-icon"><i class="bi bi-code-square"></i></span>
+                <span>Developers</span>
+            </div>
+            <div class="audience-item">
+                <span class="audience-icon"><i class="bi bi-building"></i></span>
+                <span>Companies</span>
+            </div>
+            <div class="audience-item">
+                <span class="audience-icon"><i class="bi bi-lightbulb"></i></span>
+                <span>Tech Enthusiasts</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Schedule -->
+<section class="pyday-section">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-calendar2-week"></i></div>
+        <h2>Suggested <span class="highlight">Schedule</span></h2>
+        <p style="margin-bottom: 30px;">
+            A full day of learning and networking:
+        </p>
+        
+        <ul class="schedule-list text-start">
+            <li>
+                <span class="time">08:30</span>
+                <div>
+                    <span class="event">📋 Registration</span>
+                    <span class="desc">Welcome and material distribution</span>
+                </div>
+            </li>
+            <li>
+                <span class="time">09:00</span>
+                <div>
+                    <span class="event">🎤 Opening</span>
+                    <span class="desc">What is the Python Angola community? Vision for the country.</span>
+                </div>
+            </li>
+            <li>
+                <span class="time">09:30</span>
+                <div>
+                    <span class="event">🚀 Keynote</span>
+                    <span class="desc">Why learn Python in 2026?</span>
+                </div>
+            </li>
+            <li>
+                <span class="time">10:30</span>
+                <div>
+                    <span class="event">☕ Coffee Break</span>
+                    <span class="desc">Networking and break</span>
+                </div>
+            </li>
+            <li>
+                <span class="time">11:00</span>
+                <div>
+                    <span class="event">🎯 Talks</span>
+                    <span class="desc">Django • Automation • Artificial Intelligence • Cybersecurity with Python</span>
+                </div>
+            </li>
+            <li>
+                <span class="time">13:00</span>
+                <div>
+                    <span class="event">🍽️ Lunch</span>
+                    <span class="desc">Lunch break and networking</span>
+                </div>
+            </li>
+            <li>
+                <span class="time">14:00</span>
+                <div>
+                    <span class="event">💻 Workshop</span>
+                    <span class="desc">Building your first Python application</span>
+                </div>
+            </li>
+            <li>
+                <span class="time">15:30</span>
+                <div>
+                    <span class="event">🗣️ Panel Discussion</span>
+                    <span class="desc">The future of Python in Angola</span>
+                </div>
+            </li>
+            <li>
+                <span class="time">16:00</span>
+                <div>
+                    <span class="event">🎬 Closing</span>
+                    <span class="desc">Community presentation. Call for volunteers.</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- Venue -->
+<section class="pyday-section">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-geo-alt-fill"></i></div>
+        <h2><span class="highlight">Venue</span></h2>
+        <p>
+            PyDay Angola 2026 will take place in <strong>Namibe</strong>, a province 
+            with great potential for the growth of the technology community in Angola.
+        </p>
+        <p style="margin-top: 12px;">
+            The event will have the support of local institutions, universities, and 
+            partners who believe in the power of technology to transform lives.
+        </p>
+        <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+            <span style="background: rgba(255,212,59,0.08); color: var(--python-yellow); padding: 6px 18px; border-radius: 50px; font-size: 0.9rem;">
+                <i class="bi bi-building me-1"></i> University Auditorium
+            </span>
+            <span style="background: rgba(255,212,59,0.08); color: var(--python-yellow); padding: 6px 18px; border-radius: 50px; font-size: 0.9rem;">
+                <i class="bi bi-people me-1"></i> Capacity: 100+ people
+            </span>
+            <span style="background: rgba(255,212,59,0.08); color: var(--python-yellow); padding: 6px 18px; border-radius: 50px; font-size: 0.9rem;">
+                <i class="bi bi-wifi me-1"></i> Internet available
+            </span>
+        </div>
+    </div>
+</section>
+
+<!-- Call to action -->
+<section class="pyday-section" style="padding-bottom: 80px;">
+    <div class="container text-center">
+        <div class="section-icon"><i class="bi bi-rocket-takeoff"></i></div>
+        <h2>Join <span class="highlight">PyDay Angola</span></h2>
+        <p style="max-width: 700px; margin: 0 auto 20px;">
+            Be part of the first step towards PyCon Angola. 
+            Come learn, share, and build the Python community in Angola.
+        </p>
+        
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
+            <a href="#" class="btn btn-primary-hero">
+                <i class="bi bi-envelope-paper me-2"></i>
+                I want to participate
+            </a>
+            <a href="mailto:pyconangola@gmail.com" class="btn btn-outline-hero">
+                <i class="bi bi-envelope me-2"></i>
+                Contact organization
+            </a>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <p style="color: var(--text-muted); font-size: 0.9rem;">
+                <i class="bi bi-info-circle me-1"></i>
+                Registration opening soon. Stay tuned!
+            </p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
