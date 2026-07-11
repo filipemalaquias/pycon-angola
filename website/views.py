@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 
 def get_language_from_request(request):
-    """Obtém o idioma atual da sessão ou do cookie"""
+    """Obtém o idioma atual da sessão"""
     return request.session.get('language', 'pt')
 
 def home_pt(request):
@@ -61,25 +61,16 @@ def about_en(request):
     return render(request, 'website/about_en.html', context)
 
 def switch_language(request, lang):
-    """Alterna o idioma e redireciona de volta para a página atual"""
+    """Alterna o idioma e redireciona para a página atual no novo idioma"""
     request.session['language'] = lang
     
-    # Obtém a URL de referência (página atual)
+    # Obtém a URL atual
     referer = request.META.get('HTTP_REFERER', '/')
     
     # Mapeia as URLs para redirecionar corretamente
     if '/sobre/' in referer or '/about/' in referer:
-        if lang == 'pt':
-            return redirect('website:about_pt')
-        else:
-            return redirect('website:about_en')
+        return redirect('website:about_pt' if lang == 'pt' else 'website:about_en')
     elif '/codigo-de-conduta/' in referer or '/code-of-conduct/' in referer:
-        if lang == 'pt':
-            return redirect('website:code_of_conduct_pt')
-        else:
-            return redirect('website:code_of_conduct_en')
+        return redirect('website:code_of_conduct_pt' if lang == 'pt' else 'website:code_of_conduct_en')
     else:
-        if lang == 'pt':
-            return redirect('website:home_pt')
-        else:
-            return redirect('website:home_en')
+        return redirect('website:home_pt' if lang == 'pt' else 'website:home_en')

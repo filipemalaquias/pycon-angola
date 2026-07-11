@@ -33,6 +33,26 @@
     <!-- Main CSS -->
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
     
+    <style>
+        /* Aumentar o tamanho da logo */
+        .navbar-brand img {
+            height: 50px !important;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .navbar-brand img:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Ajuste para mobile */
+        @media (max-width: 576px) {
+            .navbar-brand img {
+                height: 40px !important;
+            }
+        }
+    </style>
+    
     {% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -40,9 +60,8 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'website:home' %}">
-                <img src="{% static 'images/pycon-logo-small.png' %}" alt="PyCon Angola" height="35">
-                <!-- <span class="brand-text">PyCon <span class="brand-highlight">Angola</span></span> -->
+            <a class="navbar-brand" href="{% if LANGUAGE_CODE == 'en' %}{% url 'website:home_en' %}{% else %}{% url 'website:home_pt' %}{% endif %}">
+                <img src="{% static 'images/pycon-logo-small.png' %}" alt="PyCon Angola" height="50">
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -51,12 +70,24 @@
             
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-lg-center">
-                    <li class="nav-item"><a class="nav-link {% if request.path == '/' or request.path == '/pt/' %}active{% endif %}" href="{% url 'website:home' %}">{% block nav_home %}Início{% endblock %}</a></li>
-                    <li class="nav-item"><a class="nav-link {% if '/sobre/' in request.path or '/about/' in request.path %}active{% endif %}" href="{% url 'website:about_pt' %}">{% block nav_about %}Sobre{% endblock %}</a></li>
-                    <!-- <li class="nav-item"><a class="nav-link" href="{% url 'website:home' %}#call4papers">{% block nav_cfp %}Call4Papers{% endblock %}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'website:home' %}#schedule">{% block nav_schedule %}Programação{% endblock %}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'website:home' %}#venue">{% block nav_venue %}Local{% endblock %}</a></li> -->
-                    <li class="nav-item"><a class="nav-link {% if '/codigo-de-conduta/' in request.path or '/code-of-conduct/' in request.path %}active{% endif %}" href="{% url 'website:code_of_conduct_pt' %}">{% block nav_coc %}Código de Conduta{% endblock %}</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' or request.path == '/pt/' or request.path == '/en/' %}active{% endif %}" 
+                           href="{% if LANGUAGE_CODE == 'en' %}{% url 'website:home_en' %}{% else %}{% url 'website:home_pt' %}{% endif %}">
+                            {% block nav_home %}Início{% endblock %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if '/sobre/' in request.path or '/about/' in request.path %}active{% endif %}" 
+                           href="{% if LANGUAGE_CODE == 'en' %}{% url 'website:about_en' %}{% else %}{% url 'website:about_pt' %}{% endif %}">
+                            {% block nav_about %}Sobre{% endblock %}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if '/codigo-de-conduta/' in request.path or '/code-of-conduct/' in request.path %}active{% endif %}" 
+                           href="{% if LANGUAGE_CODE == 'en' %}{% url 'website:code_of_conduct_en' %}{% else %}{% url 'website:code_of_conduct_pt' %}{% endif %}">
+                            {% block nav_coc %}Código de Conduta{% endblock %}
+                        </a>
+                    </li>
                     
                     <!-- Language Selector -->
                     <li class="nav-item dropdown ms-2">
@@ -108,8 +139,7 @@
             <div class="row g-4">
                 <div class="col-lg-4">
                     <div class="footer-brand">
-                        <img src="{% static 'images/pycon-logo-small.png' %}" alt="PyCon Angola" height="30">
-                        <!-- <span>PyCon <span class="brand-highlight">Angola</span></span> -->
+                        <img src="{% static 'images/pycon-logo-small.png' %}" alt="PyCon Angola" height="40">
                     </div>
                     <p class="footer-description">
                         {% block footer_description %}Construindo a comunidade Python em Angola 🇦🇴{% endblock %}
@@ -126,8 +156,16 @@
                 <div class="col-lg-2 col-md-3 col-6">
                     <h6>{% block footer_nav %}Navegação{% endblock %}</h6>
                     <ul class="footer-links">
-                        <li><a href="{% url 'website:home' %}">{% block footer_home %}Início{% endblock %}</a></li>
-                        <li><a href="{% url 'website:about_pt' %}">{% block footer_about %}Sobre{% endblock %}</a></li>
+                        <li>
+                            <a href="{% if LANGUAGE_CODE == 'en' %}{% url 'website:home_en' %}{% else %}{% url 'website:home_pt' %}{% endif %}">
+                                {% block footer_home %}Início{% endblock %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% if LANGUAGE_CODE == 'en' %}{% url 'website:about_en' %}{% else %}{% url 'website:about_pt' %}{% endif %}">
+                                {% block footer_about %}Sobre{% endblock %}
+                            </a>
+                        </li>
                         <li><a href="{% url 'website:home' %}#call4papers">{% block footer_cfp %}Call4Papers{% endblock %}</a></li>
                         <li><a href="{% url 'website:home' %}#schedule">{% block footer_schedule %}Programação{% endblock %}</a></li>
                     </ul>
@@ -137,7 +175,7 @@
                     <h6>{% block footer_resources %}Recursos{% endblock %}</h6>
                     <ul class="footer-links">
                         <li>
-                            <a href="{% url 'website:code_of_conduct_pt' %}">
+                            <a href="{% if LANGUAGE_CODE == 'en' %}{% url 'website:code_of_conduct_en' %}{% else %}{% url 'website:code_of_conduct_pt' %}{% endif %}">
                                 {% block footer_coc %}Código de Conduta{% endblock %}
                             </a>
                         </li>
